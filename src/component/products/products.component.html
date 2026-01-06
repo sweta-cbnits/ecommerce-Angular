@@ -1,0 +1,98 @@
+<h2 style="text-align: center">Available Products</h2>
+<app-alert
+  *ngIf="showAlert"
+  [message]="alertMessage"
+  [type]="alertType"
+></app-alert>
+
+<button class="custom-button" (click)="onclickAddProduct()">
+  Add New Product
+</button>
+
+<div class="form-overlay" *ngIf="addproductFromVisible">
+  <div class="form-container">
+    <h3 class="form-title">Add New Product</h3>
+
+    <form #productForm="ngForm">
+      <div class="form-group">
+        <label>Product Id</label>
+        <input name="id" [(ngModel)]="addProductObject.id" required />
+      </div>
+
+      <div class="form-group">
+        <label>Title</label>
+        <input name="title" [(ngModel)]="addProductObject.title" required />
+      </div>
+
+      <div class="form-group">
+        <label>Price</label>
+        <input
+          type="number"
+          name="price"
+          [(ngModel)]="addProductObject.price"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Description</label>
+        <input
+          name="description"
+          [(ngModel)]="addProductObject.description"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Category</label>
+        <input
+          name="category"
+          [(ngModel)]="addProductObject.category"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Product Image</label>
+        <input type="file" (change)="onFileSelected($event)" />
+      </div>
+
+      <div class="form-actions">
+        <button type="button" class="btn-cancel" (click)="onclickAddProduct()">
+          Cancel
+        </button>
+        <button type="submit" (click)="submitProduct()">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<ng-template [ngIf]="productList.length === 0">
+  <p style="text-align: center; font-size: 1.2em; color: gray">
+    No products available.
+  </p>
+</ng-template>
+
+<div class="product-container">
+  <div class="card" *ngFor="let product of productList">
+    <img [src]="product.image" alt="{{ product.title }}" />
+
+    <h3>{{ product.title }}</h3>
+
+    <p class="price">₹{{ product.price }}</p>
+
+    <p class="category"><strong>Category:</strong> {{ product.category }}</p>
+
+    <p class="rating">
+      ⭐ {{ product.rating.rate }} ({{ product.rating.count }} reviews)
+    </p>
+
+    <div class="card-actions">
+      <button class="card-btn" (click)="addToCart(product)">Add to Cart</button>
+
+      <button class="card-btn delete-btn" (click)="deleteProduct(product.id)">
+        Delete Product
+      </button>
+    </div>
+  </div>
+</div>

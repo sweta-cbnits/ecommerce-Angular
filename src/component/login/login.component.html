@@ -1,0 +1,25 @@
+<div class="parent">
+  <div class="container">
+    <h2>Log In</h2>
+    <p>Ecommerce</p>
+    <input
+      [(ngModel)]="userObj.EmailId"
+      id="uname"
+      type="text"
+      placeholder="Email"
+      required
+    />
+    <input
+      [(ngModel)]="userObj.Password"
+      id="pass"
+      type="Password"
+      placeholder="Password"
+      required
+    />
+    <div class="btn-container">
+      <button id="login-btn" class="shift-left" (click)="logIn()">
+        Log In
+      </button>
+    </div>
+  </div>
+</div>
