@@ -1,5 +1,10 @@
 <div class="parent">
   <div class="container">
+    <app-alert
+      *ngIf="showAlert"
+      [message]="alertMessage"
+      [type]="alertType"
+    ></app-alert>
     <h2>Log In</h2>
     <p>Ecommerce</p>
     <input
